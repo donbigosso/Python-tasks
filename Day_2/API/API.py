@@ -17,10 +17,13 @@ def letter_count(text):
 
 
 def get_statistics(url: str) -> dict:
-    response = requests.get(url)
+    try:
+        response = requests.get(url)
+    except Exception as e:
+        return dict(message="Strona nie istnieje")
     if response.status_code != 200:
-        print('nie otrzymano odpowiedzi')
-        return
+        # print('nie otrzymano odpowiedzi')
+        return dict(message="nie otrzymano odpowiedzi")
     html_data = soup(response.text, 'html.parser')
     word_counter = 0
     volves_counter = 0
@@ -44,6 +47,3 @@ def get_statistics(url: str) -> dict:
         'most letter': f'most requent letter is {most_frequent_letter}: {letter_counter[most_frequent_letter]}',
         'numer of a': len(html_data.find_all("a"))
     }
-
-
-print(get_statistics("http://polafri.pl"))

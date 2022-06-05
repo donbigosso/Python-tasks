@@ -22,6 +22,12 @@ class Hero:
         enemy.health -= self.damage
         print(f"{self.name} inflicted {self.damage} damage on {enemy.name}")
 
+    def rob(self, enemy):
+        pre_rob_enemy_money = enemy.money
+        self.money += enemy.money
+        enemy.money = 0
+        print(f"{self.name} robbed {pre_rob_enemy_money} from {enemy.name}")
+
     def magic_attack(self, enemy):
         enemy.health -= self.magic_attack_strength
         self.mana -= self.magic_attack_strength
@@ -31,10 +37,3 @@ class Hero:
 piszczalka = Hero("Diabeł Piszczałka", 5, 100, 100, 12, 1000, "Ja kudłaty, durnowaty reperuję stare graty!")
 szkieletor = Hero("Szkieletor", 7, 100, 100, 10, 1200, "He-Man ty s...")
 he_man = Hero("He-Man", 10, 100, 100, 5, 800, "Na potęgę posępnego czerepu mocy przybywaj!")
-
-he_man.phy_attack(piszczalka)
-piszczalka.introduce_yourself()
-szkieletor.introduce_yourself()
-piszczalka.magic_attack(he_man)
-he_man.introduce_yourself()
-piszczalka.introduce_yourself()
